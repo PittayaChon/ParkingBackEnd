@@ -17,6 +17,7 @@ pipeline {
                   echo 'Hello World'
             }
         }
+
         stage('Build image') {
             steps {
                   echo 'Hello World'
@@ -34,6 +35,7 @@ pipeline {
                    echo 'Hello World'
             }
         }
+        
         stage('Deploy') {
             steps {
                    echo 'Hello World'
