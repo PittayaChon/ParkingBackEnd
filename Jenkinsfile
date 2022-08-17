@@ -17,9 +17,9 @@ pipeline {
             steps {
                 // sh 'docker -v'
                 // sh 'docker build -t parkingbackend .'
-                  script{
-                   apiImage = docker.build('api:latest')
-                  }
+                //   script{
+                   app = docker.build('api:latest')
+                //   }
             }
         }
 
