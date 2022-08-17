@@ -5,40 +5,34 @@ pipeline {
   }
   agent  any
     stages {
-        stage('Clone git') {
+        stage('clone git') {
             steps {
-                  echo 'Hello World'
+                    echo 'Building..'
+            }
+        }
+        stage('build image') {
+            steps {
+                    echo 'Building..'
+            }
+        }
+
+        stage('push image') {
+            steps {
+                    echo 'Building..'
+            }
+        }
+
+        stage('prepare deploy') {
+            steps {
+                    echo 'Building..'
+            }
+        }
+        stage('deploy') {
+            steps {
+              script {
+                    echo 'Building..'
                 }
+              }
             }
         }
-
-        stage('Unit test') {
-            steps {
-                  echo 'Hello World'
-            }
-        }
-
-        stage('Build image') {
-            steps {
-                  echo 'Hello World'
-            }
-        }
-
-        stage('Push image') {
-            steps {
-                  echo 'Hello World'
-            }
-        }
-
-        stage('Prepare deploy') {
-            steps {
-                   echo 'Hello World'
-            }
-        }
-        
-        stage('Deploy') {
-            steps {
-                   echo 'Hello World'
-            }
-        }
-}
+    }
