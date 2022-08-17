@@ -1,50 +1,40 @@
 package db
 
 import (
-	"fmt"
 	"log"
-	"strconv"
+	"time"
 
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
 
-// real project use the different host
-// https://www.calhoun.io/connecting-to-a-postgresql-database-with-gos-database-sql-package/
-// const (
-// 	host     = "postgresdb"
-// 	port     = 5432
-// 	user     = "parkadmin"
-// 	password = "secret"
-// 	dbname   = "parking"
-// )
+type Park struct {
+	ID           int    `gorm:"primaryKey" json:"id"`
+	LotId        string `json:"lot_id"`
+	Licenseplate string `json:"licenseplate"`
+	Status       int    `json:"status"`
+	Reserveable  bool   `json:"reserveable"`
+	Floor        string `json:"floor"`
+}
 
 func DB() *gorm.DB {
 	env := LoadENV()
-	fmt.Println(env.POSTGRES_PORT)
-	psqlInfo := fmt.Sprintf("host=%s port=%d user=%s "+"password=%s dbname=%s sslmode=disable", env.POSTGRES_HOST, StringToInt(env.POSTGRES_PORT), env.POSTGRES_USER, env.POSTGRES_PASSWORD, env.POSTGRES_DB)
 
-	// psqlInfo := fmt.Sprintf("host=%s port=%d user=%s "+"password=%s dbname=%s sslmode=disable", host, port, user, password, dbname)
+	psqlInfo := "postgresql://" + env.POSTGRES_USER + ":" + env.POSTGRES_PASSWORD + "@" + env.POSTGRES_HOST + ":" + env.POSTGRES_PORT + "/" + env.POSTGRES_DB
+
 	db, err := gorm.Open(postgres.Open(psqlInfo), &gorm.Config{})
 
 	if err != nil {
 		log.Fatalln(err)
 	}
 
+	// Migrate the schema
+	db.AutoMigrate(&Park{})
+
+	sqlDB, _ := db.DB()
+	sqlDB.SetMaxOpenConns(100)
+	sqlDB.SetMaxIdleConns(100)
+	sqlDB.SetConnMaxLifetime(5 * time.Minute)
+
 	return db
-}
-
-func Migrate() {
-	// db := DB()
-	// db.AutoMigrate(&UserDB{})
-}
-
-func StringToInt(s string) int {
-	// string to int
-	i, err := strconv.Atoi(s)
-	if err != nil {
-		// ... handle error
-		panic(err)
-	}
-	return i
 }
