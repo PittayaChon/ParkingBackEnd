@@ -16,7 +16,7 @@ pipeline {
         stage('Build image') {
             steps {
                   script{
-                  parking-api = docker.build('0865079783/parking-api:latest')
+                  api = docker.build('0865079783/api:latest')
                 }
             }
         }
