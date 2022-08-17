@@ -15,7 +15,8 @@ pipeline {
 
         stage('Build image') {
             steps {
-                sh 'docker build -t parkingbackend .'
+                sh 'docker -v'
+                // sh 'docker build -t parkingbackend .'
                 //   script{
                 //   docker.build 'api'
                 // //   apiImage = docker.build('0865079783/api:latest')
