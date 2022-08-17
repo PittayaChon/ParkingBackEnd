@@ -17,6 +17,7 @@ pipeline {
             steps {
                 sh 'docker image prune -a'
                 sh 'docker volume prune'
+                sh 'docker rm parkingbackend'
                 sh 'docker build -t parkingbackend .'
                 //   script{
                 // //    app = docker.build('api:latest')
