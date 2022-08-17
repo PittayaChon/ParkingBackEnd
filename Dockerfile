@@ -17,6 +17,6 @@ FROM gcr.io/distroless/base-debian10
 WORKDIR /
 
 COPY --from=build /app/server ./
-COPY .env ./
+# COPY .env ./
 
 CMD ["/server"]
