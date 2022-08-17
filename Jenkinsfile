@@ -15,12 +15,12 @@ pipeline {
 
         stage('Build image') {
             steps {
-                // sh 'docker -v'
-                // sh 'docker build -t parkingbackend .'
-                  script{
-                //    app = docker.build('api:latest')
-                   dockerImage = docker.build registry + ":latest"
-                  }
+                sh 'docker -v'
+                sh 'docker build -t parkingbackend .'
+                //   script{
+                // //    app = docker.build('api:latest')
+                //    dockerImage = docker.build registry + ":latest"
+                //   }
             }
         }
 
