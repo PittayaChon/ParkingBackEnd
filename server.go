@@ -9,7 +9,7 @@ import (
 
 func main() {
 	db.DB()
-	// test
+	// test webhook
 	e := echo.New()
 
 	e.GET("/", func(c echo.Context) error {
