@@ -18,7 +18,8 @@ pipeline {
                 // sh 'docker -v'
                 // sh 'docker build -t parkingbackend .'
                   script{
-                   app = docker.build('api:latest')
+                //    app = docker.build('api:latest')
+                   dockerImage = docker.build registry + ":latest"
                   }
             }
         }
