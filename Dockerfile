@@ -4,6 +4,7 @@ WORKDIR /app
 
 COPY ./go.mod ./
 COPY ./go.sum ./
+COPY ./.env ./
 
 RUN go mod download
 
@@ -16,5 +17,6 @@ FROM gcr.io/distroless/base-debian10
 WORKDIR /
 
 COPY --from=build /app/server ./
+COPY .env ./
 
 CMD ["/server"]
