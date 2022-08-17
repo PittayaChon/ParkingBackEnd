@@ -15,7 +15,7 @@ pipeline {
 
         stage('Build image') {
             steps {
-                sh 'docker -v'
+                sh 'docker image prune -af'
                 sh 'docker build -t parkingbackend .'
                 //   script{
                 // //    app = docker.build('api:latest')
