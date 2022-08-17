@@ -5,34 +5,48 @@ pipeline {
   }
   agent  any
     stages {
-        stage('clone git') {
+        stage('Clone git') {
             steps {
-                    echo 'Building..'
+                script{
+                checkout scm
+                }
             }
         }
-        stage('build image') {
+
+        stage('Build image') {
+            steps {
+                sh 'docker build -t parkingbackend .'
+                //   script{
+                //   docker.build 'api'
+                // //   apiImage = docker.build('0865079783/api:latest')
+                //   }
+            }
+        }
+
+        stage('Testing') {
+            steps {
+                echo 'Testing..'
+            }
+        }
+
+        stage('Push image') {
+            steps {
+                  echo '..'
+            }
+        }
+
+        stage('Prepare deploy') {
             steps {
                     echo 'Building..'
             }
         }
 
-        stage('push image') {
-            steps {
-                    echo 'Building..'
-            }
-        }
-
-        stage('prepare deploy') {
-            steps {
-                    echo 'Building..'
-            }
-        }
-        stage('deploy') {
+        stage('Deploy on production') {
             steps {
               script {
                     echo 'Building..'
                 }
               }
-            }
         }
     }
+}
