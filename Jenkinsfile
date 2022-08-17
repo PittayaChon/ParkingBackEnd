@@ -16,8 +16,8 @@ pipeline {
         stage('Build image') {
             steps {
                   script{
-                  api = docker.build('0865079783/api:latest')
-                }
+                  apiImage = docker.build('0865079783/api:latest')
+                  }
             }
         }
 
