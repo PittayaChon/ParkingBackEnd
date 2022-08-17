@@ -4,7 +4,7 @@ WORKDIR /app
 
 COPY ./go.mod ./
 COPY ./go.sum ./
-COPY ./.env ./
+# COPY ./.env ./
 
 RUN go mod download
 
