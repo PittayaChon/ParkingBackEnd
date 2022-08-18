@@ -37,7 +37,7 @@ func main() {
 
 		var parks []db.Park
 
-		db.DB().Find(&parks)
+		db.DB().Order("lot_id").Find(&parks)
 
 		return c.JSON(http.StatusOK, &parks)
 	})
@@ -61,7 +61,7 @@ func main() {
 			LotId:        park.LotId,
 			Licenseplate: park.Licenseplate,
 			Status:       park.Status,
-			Reservable:  park.Reservable,
+			Reservable:   park.Reservable,
 			Floor:        park.Floor,
 		}
 
