@@ -74,7 +74,7 @@ func main() {
 		return c.JSON(http.StatusOK, &parkDB)
 	})
 
-	e.GET("/deleteParks/:id", func(c echo.Context) error {
+	e.DELETE("/parks/:id", func(c echo.Context) error {
 		park := db.Park{}
 		id := c.Param("id")
 
