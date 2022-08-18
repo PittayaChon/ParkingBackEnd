@@ -38,7 +38,7 @@ pipeline {
         stage('Prepare deploy') {
             steps {
                     sshagent(credentials: ['jenkins-production']) {
-                    sh 'ssh -o StrictHostKeyChecking=no prod.sandbox-me.com mkdir -p /home/ubuntu/parkingfontend'
+                    sh 'ssh -o StrictHostKeyChecking=no ubuntu@prod.sandbox-me.com mkdir -p /home/ubuntu/parkingfontend'
                     sh 'scp -o StrictHostKeyChecking=no docker-compose.yml prod.sandbox-me.com:/home/ubuntu/parkingfontend/docker-compose.yml'
                     // sh 'scp -o StrictHostKeyChecking=no .env ${production_server_ip}:/home/dong/todoapp/.env'
                     // scp -i  docker-compose.yml ubuntu@prod.sandbox-me.com:/parkingfontend
