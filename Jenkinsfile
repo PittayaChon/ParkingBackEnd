@@ -18,7 +18,7 @@ pipeline {
                 sh 'docker image rm parkingbackend -f'
                 sh 'docker image prune -a -f'
                 sh 'docker volume prune -f'
-                sh 'docker build -t parkingbackend .'
+                sh 'docker build -t 0865079783/parkingbackend .'
             }
         }
 
