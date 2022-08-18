@@ -13,7 +13,7 @@ type Park struct {
 	LotId        string `json:"lot_id"`
 	Licenseplate string `json:"licenseplate"`
 	Status       int    `json:"status"`
-	Reserveable  bool   `json:"reserveable"`
+	Reservable  bool   `json:"reservable"`
 	Floor        string `json:"floor"`
 }
 
