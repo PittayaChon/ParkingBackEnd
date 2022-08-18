@@ -49,7 +49,6 @@ pipeline {
                     sshagent(credentials: ['jenkins-production']) {
                     sh 'ssh -o StrictHostKeyChecking=no ubuntu@prod.sandbox-me.com docker-compose -f /home/ubuntu/parkingbackend/docker-compose.yml pull'
                     sh 'ssh -o StrictHostKeyChecking=no ubuntu@prod.sandbox-me.com docker-compose -f /home/ubuntu/parkingbackend/docker-compose.yml up -d'
-                    
                     }
               }
         }
