@@ -9,16 +9,16 @@ import (
 )
 
 var parks = []db.Park{
-	{LotId: "A001", Licenseplate: "", Status: 0, Reserveable: false, Floor: "A"},
-	{LotId: "A002", Licenseplate: "", Status: 1, Reserveable: false, Floor: "A"},
-	{LotId: "A003", Licenseplate: "", Status: 0, Reserveable: false, Floor: "A"},
-	{LotId: "A004", Licenseplate: "", Status: 0, Reserveable: false, Floor: "A"},
-	{LotId: "A005", Licenseplate: "", Status: 0, Reserveable: false, Floor: "A"},
-	{LotId: "A006", Licenseplate: "", Status: 0, Reserveable: false, Floor: "A"},
-	{LotId: "A007", Licenseplate: "", Status: 0, Reserveable: false, Floor: "A"},
-	{LotId: "A008", Licenseplate: "", Status: 0, Reserveable: true, Floor: "A"},
-	{LotId: "A009", Licenseplate: "", Status: 0, Reserveable: true, Floor: "A"},
-	{LotId: "A010", Licenseplate: "", Status: 0, Reserveable: true, Floor: "A"},
+	{LotId: "A001", Licenseplate: "", Status: 1, Reserveable: false, Floor: "A"},
+	{LotId: "A002", Licenseplate: "", Status: 2, Reserveable: false, Floor: "A"},
+	{LotId: "A003", Licenseplate: "", Status: 1, Reserveable: false, Floor: "A"},
+	{LotId: "A004", Licenseplate: "", Status: 1, Reserveable: false, Floor: "A"},
+	{LotId: "A005", Licenseplate: "", Status: 1, Reserveable: false, Floor: "A"},
+	{LotId: "A006", Licenseplate: "", Status: 1, Reserveable: false, Floor: "A"},
+	{LotId: "A007", Licenseplate: "", Status: 1, Reserveable: false, Floor: "A"},
+	{LotId: "A008", Licenseplate: "", Status: 1, Reserveable: true, Floor: "A"},
+	{LotId: "A009", Licenseplate: "", Status: 1, Reserveable: true, Floor: "A"},
+	{LotId: "A010", Licenseplate: "", Status: 1, Reserveable: true, Floor: "A"},
 }
 
 func main() {
