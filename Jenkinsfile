@@ -37,13 +37,11 @@ pipeline {
 
         stage('Prepare deploy') {
             steps {
-                    sshagent(credentials: ['ubuntu']) {
-                    sh '''
-                    [ -d ~/.ssh ] || mkdir ~/.ssh && chmod 0700 ~/.ssh
-                    ssh-keyscan -t rsa,dsa example.com >> ~/.ssh/known_hosts
-                    ssh ubuntu@prod.sandbox-me.com ...
-                    scp -i  docker-compose.yml ubuntu@prod.sandbox-me.com:/parkingfontend
-                    '''
+                    sshagent(credentials: ['jenkins-prod-server']) {
+                    sh 'ssh -o StrictHostKeyChecking=no prod.sandbox-me.com mkdir -p /home/ubuntu/parkingfontend'
+                    sh 'scp -o StrictHostKeyChecking=no docker-compose.yml prod.sandbox-me.com:/home/ubuntu/parkingfontend/docker-compose.yml'
+                    // sh 'scp -o StrictHostKeyChecking=no .env ${production_server_ip}:/home/dong/todoapp/.env'
+                    // scp -i  docker-compose.yml ubuntu@prod.sandbox-me.com:/parkingfontend
                     }
             }
         }
