@@ -30,7 +30,7 @@ func main() {
 	e.Use(middleware.CORS())
 
 	e.GET("/", func(c echo.Context) error {
-		return c.String(http.StatusOK, "Hi")
+		return c.String(http.StatusOK, "Hello")
 	})
 
 	e.GET("/parks", func(c echo.Context) error {
@@ -48,6 +48,30 @@ func main() {
 		db.DB().Create(&parks)
 
 		return c.JSON(http.StatusCreated, parks)
+	})
+
+	e.PUT("/parks/:id", func(c echo.Context) error {
+		park := db.Park{}
+		if err := c.Bind(&park); err != nil {
+			return err
+		}
+
+		parkDB := db.Park{
+			ID:           park.ID,
+			LotId:        park.LotId,
+			Licenseplate: park.Licenseplate,
+			Status:       park.Status,
+			Reserveable:  park.Reserveable,
+			Floor:        park.Floor,
+		}
+
+		id := c.Param("id")
+
+		if err := db.DB().Model(&parkDB).Where("id = ?", id).Updates(&parkDB).Error; err != nil {
+			return err
+		}
+
+		return c.JSON(http.StatusOK, &parkDB)
 	})
 
 	e.Logger.Fatal(e.Start(":1234"))
