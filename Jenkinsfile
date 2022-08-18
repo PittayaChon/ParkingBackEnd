@@ -15,7 +15,7 @@ pipeline {
 
         stage('Build image') {
             steps {
-                sh 'docker image rm parkingbackend -f'
+                sh 'docker image rm 0865079783/parkingbackend -f'
                 sh 'docker image prune -a -f'
                 sh 'docker volume prune -f'
                 sh 'docker build -t 0865079783/parkingbackend .'
@@ -47,6 +47,10 @@ pipeline {
         stage('Deploy on production') {
             steps {
                     sshagent(credentials: ['jenkins-production']) {
+                    sh 'ssh -o StrictHostKeyChecking=no ubuntu@prod.sandbox-me.com docker-compose -f /home/ubuntu/parkingbackend/docker-compose.yml down'
+                    sh 'docker image rm 0865079783/parkingbackend -f'
+                    sh 'docker image prune -a -f'
+                    sh 'docker volume prune -f'
                     sh 'ssh -o StrictHostKeyChecking=no ubuntu@prod.sandbox-me.com docker-compose -f /home/ubuntu/parkingbackend/docker-compose.yml pull'
                     sh 'ssh -o StrictHostKeyChecking=no ubuntu@prod.sandbox-me.com docker-compose -f /home/ubuntu/parkingbackend/docker-compose.yml up -d'
                     }
