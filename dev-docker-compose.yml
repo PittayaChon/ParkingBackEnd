@@ -16,7 +16,7 @@ services:
       dockerfile: Dockerfile.dev
       target: dev
     volumes:
-      - .:/app
+      - ./:/app
     ports:
       - 1234:1234
     env_file:
