@@ -5,6 +5,7 @@ import (
 	"smart-parking-lot/db"
 
 	"github.com/labstack/echo/v4"
+	"github.com/labstack/echo/v4/middleware"
 )
 
 var parks = []db.Park{
@@ -25,6 +26,8 @@ func main() {
 	db.DB()
 	// test webhook 4
 	e := echo.New()
+
+	e.Use(middleware.CORS())
 
 	e.GET("/", func(c echo.Context) error {
 		return c.String(http.StatusOK, "Hi")
