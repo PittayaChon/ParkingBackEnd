@@ -32,8 +32,7 @@ pipeline {
             steps {
 
                   sh 'docker login -u="0865079783" -p="dearx2527"'
-                  sh 'docker push parkingbackend:latest'
-
+                  sh 'docker push 0865079783/parkingbackend:latest'
             }
         }
 
