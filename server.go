@@ -33,7 +33,9 @@ func main() {
 		return c.String(http.StatusOK, "Hello")
 	})
 
-	e.GET("/parks", func(c echo.Context) error {
+	apiGroup := e.Group("/api")
+
+	apiGroup.GET("/parks", func(c echo.Context) error {
 
 		var parks []db.Park
 
@@ -42,7 +44,7 @@ func main() {
 		return c.JSON(http.StatusOK, &parks)
 	})
 
-	e.POST("/create-mock-parks", func(c echo.Context) error {
+	apiGroup.POST("/create-mock-parks", func(c echo.Context) error {
 		parks := parks
 
 		db.DB().Create(&parks)
@@ -50,7 +52,7 @@ func main() {
 		return c.JSON(http.StatusCreated, parks)
 	})
 
-	e.PUT("/parks/:id", func(c echo.Context) error {
+	apiGroup.PUT("/parks/:id", func(c echo.Context) error {
 		park := db.Park{}
 		if err := c.Bind(&park); err != nil {
 			return err
@@ -74,7 +76,7 @@ func main() {
 		return c.JSON(http.StatusOK, &parkDB)
 	})
 
-	e.DELETE("/parks/:id", func(c echo.Context) error {
+	apiGroup.DELETE("/parks/:id", func(c echo.Context) error {
 		park := db.Park{}
 		id := c.Param("id")
 
