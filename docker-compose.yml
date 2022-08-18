@@ -9,15 +9,23 @@ services:
       - .env
     ports:
       - 5432:5432
+    networks:
+      - parking-network
   server:
-    build:
-      dockerfile: Dockerfile
+    image: 0865079783/parkingbackend:latest
+    container_name: parking-backend-container
     ports:
       - 1234:1234
     env_file:
       - .env
+    environment:
+      - GO_ENV=production
     depends_on:
       - postgresdb
+    networks:
+      - parking-network
 
 volumes:
   parking-db:
+networks:
+  parking-network:
