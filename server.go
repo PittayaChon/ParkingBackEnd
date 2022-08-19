@@ -36,6 +36,12 @@ func main() {
 		return c.String(http.StatusOK, "Hello")
 	})
 
+	// websocket -> ws://localhost:1234/ws
+	e.GET("/ws", func(c echo.Context) error {
+		ServeWs(hub, c)
+		return nil
+	})
+
 	apiGroup := e.Group("/api")
 
 	apiGroup.GET("/parks", func(c echo.Context) error {
