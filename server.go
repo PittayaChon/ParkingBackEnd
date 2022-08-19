@@ -27,6 +27,9 @@ func main() {
 	// test webhook 4
 	e := echo.New()
 
+	hub := newHub()
+	go hub.run()
+
 	e.Use(middleware.CORS())
 
 	e.GET("/", func(c echo.Context) error {
